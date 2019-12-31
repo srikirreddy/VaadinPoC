@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
+import com.nimsoft.selfservice.v2.model.RawProfile;
 //import com.aiops.uim.mcs.models.Template;
 import com.nimsoft.selfservice.v2.model.Template;
 import com.aiops.uim.mcs.serviceclient.ITemplateService;
@@ -50,6 +51,9 @@ public class TemplateService extends ServiceAPI implements ITemplateService {
 	}
 
 	@Override
+	/*
+	 * To get list of templates applcable for the device with CS_ID
+	 */
 	public List<Template> getAllTemplatesByDevice(long csID) {		
 
 		List<Template> templates = null;
@@ -76,5 +80,33 @@ public class TemplateService extends ServiceAPI implements ITemplateService {
 
 		return templates;
 	}
+	
+	/*
+	 * Get the basic profile blueprint required to create profile
+	 */
+	@Override
+	public RawProfile getProfileForTemplate(long templateID)	{
+		
+		RawProfile template = null;
+
+		try	{
+			String url = getMCSWSBaseURL() + "/v1/templates/" + templateID + "/blueprint";
+			ClientResponse result  = super.request(url);
+			if(result.getStatus() != 200)	{
+				System.out.println("Error requesting: "  + url + " Status:" + result.getStatus());
+			}
+			else	{
+				GenericType<RawProfile> genericType = new GenericType<RawProfile>(){};
+				template = result.getEntity(genericType);
+				System.out.println("Template recived: " + template.toString());
+			}
+		}
+		catch(Exception e)	{
+			System.out.println("Exception: " + e);
+		}
+
+		return template;
+	}
+	
 
 }
