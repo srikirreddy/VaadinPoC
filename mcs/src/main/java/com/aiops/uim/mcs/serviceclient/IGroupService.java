@@ -2,10 +2,10 @@ package com.aiops.uim.mcs.serviceclient;
 
 import java.util.List;
 
-import com.aiops.uim.mcs.models.Group;
+import com.nimsoft.selfservice.v2.model.DeviceGroup;
 
 public interface IGroupService {
 
-	Group getGroupById(long deviceId);
-	List<Group> getAllGroups();
+	DeviceGroup getGroupById(long deviceId);
+	List<DeviceGroup> getAllGroups();
 }
