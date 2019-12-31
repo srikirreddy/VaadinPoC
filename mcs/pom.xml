@@ -22,12 +22,22 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<!-- If there are no local customizations, this can also be "fetch" or "cdn" -->
 		<vaadin.widgetset.mode>local</vaadin.widgetset.mode>
+		<jersey.version>1.15</jersey.version>
 	</properties>
 
 	<repositories>
 		<repository>
 			<id>vaadin-addons</id>
 			<url>http://maven.vaadin.com/vaadin-addons</url>
+		</repository>
+
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>ca-libs-release</id>
+			<name>ca-libs-release</name>
+			<url>http://artifactory.dev.fco:8081/artifactory/libs-release</url>
 		</repository>
 	</repositories>
 
@@ -44,6 +54,14 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<!--  UIM dependencies -->
+		<dependency>
+			<groupId>com.nimsoft.ce.selfservice</groupId>
+			<artifactId>selfservice-profile</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+
+		<!--  Other dependencies -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -66,6 +84,25 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-themes</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 		<dependency>
@@ -73,7 +110,6 @@
 		    <artifactId>json-simple</artifactId>
 		    <version>1.1</version>
 		</dependency>
-		
 	</dependencies>
 
 	<build>

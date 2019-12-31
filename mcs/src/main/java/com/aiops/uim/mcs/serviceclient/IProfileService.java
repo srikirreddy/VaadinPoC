@@ -1,10 +1,10 @@
 package com.aiops.uim.mcs.serviceclient;
 
-import com.aiops.uim.mcs.models.Profile;
+import com.nimsoft.selfservice.v2.model.RawProfile;
 
 public interface IProfileService {
 
-	void saveProfile(Profile profile);
+	boolean saveProfile(RawProfile profile);
 
-	Profile getProfileById(long id);
+	RawProfile getProfileById(long id);
 }
