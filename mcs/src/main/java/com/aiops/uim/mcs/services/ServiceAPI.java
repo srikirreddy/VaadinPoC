@@ -18,6 +18,7 @@ public class ServiceAPI {
 	
 	private final String UIMAPI_PATH = "uimapi";
 	private final String MCSAPI_PATH = "mcs-ui-app/api";
+	private final String MCSWS_PATH = "mcsws";
 		
 	private UIMInstance uim = null;
 	
@@ -42,6 +43,12 @@ public class ServiceAPI {
 		return uim.getProtocol() + "://" +
 				uim.getHostname() + ":" + 
 				uim.getPort() + "/" + MCSAPI_PATH;				
+	}
+	
+	protected String getMCSWSBaseURL() {
+		return uim.getProtocol() + "://" +
+				uim.getHostname() + ":" + 
+				uim.getPort() + "/" + MCSWS_PATH;
 	}
 	
 	public ClientResponse request(String url)	{
